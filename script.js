@@ -28,7 +28,7 @@ class student {
         return this._studentAge
     }
 
-    get studentMarks(){
+    get studentMarks() {
         return this._studentMarks
     }
 
@@ -37,9 +37,9 @@ class student {
         const ErrorClassInsertion = document.getElementById("ageInput")
         const ageError = document.getElementById("ageError");
 
-        if (value > 50) {
+        if (value < 18 || value > 50) {
             ErrorClassInsertion.classList.add("outlineChange")
-            ageError.textContent = `Age Can't be Greater then 50.!`
+            ageError.textContent = `Age Must be Between 18 - 50!`
             ageError.style.margin = `10px`
             ageError.style.color = `rgb(215, 0, 0)`
             return;
@@ -80,9 +80,9 @@ class student {
         const ErrorClassInsertion = document.getElementById("marksInput")
         const marksError = document.getElementById("marksError");
 
-        if (value > 1100) {
+        if (value < 300 || value > 1100) {
             ErrorClassInsertion.classList.add("outlineChange")
-            marksError.textContent = `Marks Can't Be Greater then 1100.!`
+            marksError.textContent = `Marks Should be Between 300 - 1100.!`
             marksError.style.margin = `10px`
             marksError.style.color = `rgb(215, 0, 0)`
             return;
