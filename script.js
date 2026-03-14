@@ -37,9 +37,9 @@ class student {
         const ErrorClassInsertion = document.getElementById("ageInput")
         const ageError = document.getElementById("ageError");
 
-        if (value < 18 || value > 50) {
+        if (value < 18 || value > 60) {
             ErrorClassInsertion.classList.add("outlineChange")
-            ageError.textContent = `Age Must be Between 18 - 50!`
+            ageError.textContent = `Age Must be Between 18 - 60.!`
             ageError.style.margin = `10px`
             ageError.style.color = `rgb(215, 0, 0)`
             return;
@@ -137,14 +137,17 @@ addStudentBtn.onclick = () => {
 
     const StudentObj = new student({ studentName: `${nameInput}`, studentAge: `${ageInput}`, studentMarks: `${marksInput}` })
 
-    students.push(StudentObj)
+    if (typeof StudentObj.studentName !== "undefined" && typeof StudentObj.studentAge !== "undefined" && typeof StudentObj.studentMarks !== "undefined") {
+        students.push(StudentObj)
+    }
+
     printStudents(students);
     storeNameInput.value = ""
     storeAgeInput.value = ""
     storeMarksInput.value = ""
 
 
-    console.log(StudentObj)
+    console.log(students)
 
 }
 
