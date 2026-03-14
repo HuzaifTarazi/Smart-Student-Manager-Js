@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.app-container {
+    width: 900px;
+    max-width: 95%;
+}
+
+#appTitle {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+    font-size: 32px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.card h2 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.outlineChange {
+    border: 1px solid rgb(215, 0, 0) !important;
+    
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #4facfe;
+    box-shadow: 0 0 5px rgba(79, 172, 254, 0.4);
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #4facfe;
+    color: white;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #2f8cff;
+}
+
+.stats-card p {
+    margin: 6px 0;
+    font-weight: 500;
+}
+
+.table-card {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th {
+    background: #4facfe;
+    color: white;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+tr:hover {
+    background: #f5f9ff;
+}
+
+.delete-btn {
+    width: 100px;
+    background-color: #ff5a5a;
+    padding: 10px;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+}
+
+.delete-btn:hover {
+    background: #e63b3b;
+}
+
+.export-section {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#exportJsonBtn {
+    background: #2ecc71;
+}
+
+#exportJsonBtn:hover {
+    background: #20b861;
+}
+
+.tablestyle {
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    list-style-type: none;
+}
+
+.listStyle {
+    padding: 10px;
+}

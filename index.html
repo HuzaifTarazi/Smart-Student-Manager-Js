@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Student Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <h1 id="appTitle">Smart Student Manager</h1>
+        <!-- Add Student Section -->
+        <div class="card">
+            <h2>Add Student</h2>
+            <div class="input-group">
+                <input id="nameInput" type="text" placeholder="Student Name">
+                <input id="ageInput" type="number" placeholder="Age">
+                <input id="marksInput" type="number" placeholder="Marks">
+            </div>
+            <div id="errorMessage">
+                <p id="nameError"></p>
+                <p id="ageError"></p>
+                <p id="marksError"></p>
+
+            </div>
+            <div class="button-group">
+                <button id="addStudentBtn">Add Student</button>
+                <button id="generateRandomBtn">Generate Random</button>
+            </div>
+        </div>
+
+        <!-- Search & Sort Section -->
+        <div class="card">
+            <h2>Search & Sort</h2>
+            <div class="input-group">
+                <input id="searchInput" type="text" placeholder="Search Student">
+            </div>
+            <div class="button-group">
+                <button id="sortMarksBtn">Sort by Marks</button>
+                <button id="sortNameBtn">Sort by Name</button>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="card stats-card">
+
+            <h2>Class Statistics</h2>
+
+            <div id="statsContainer">
+
+                <p id="avgMarks">Average Marks: --</p>
+                <p id="highestMarks">Highest Marks: --</p>
+                <p id="lowestMarks">Lowest Marks: --</p>
+
+            </div>
+
+        </div>
+
+        <!-- Table Section -->
+        <div class="card table-card">
+            <h2>Student List</h2>
+            <table id="studentTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Marks</th>
+                        <th>Grade</th>
+                        <th>Action</th>
+                    </tr>
+                    
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Students will appear here -->
+                     
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <!-- Export Section -->
+        <div class="export-section">
+
+            <button id="exportJsonBtn">Export JSON</button>
+
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
