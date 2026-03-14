@@ -74,7 +74,6 @@ class student {
         }
     }
 
-
     set studentMarks(value) {
 
         const ErrorClassInsertion = document.getElementById("marksInput")
@@ -98,25 +97,24 @@ class student {
 
 }
 
-
 const tableBody = document.getElementById("tableBody");
 function printStudents(students) {
     tableBody.innerHTML = ``
-    students.forEach(element => {
+
+    students.forEach((element, index) => {
         const trElement = document.createElement("tr")
+        trElement.classList.add("tableData")
+        console.log(trElement)
         if (typeof element.studentName !== "undefined" && typeof element.studentAge !== "undefined" && typeof element.studentMarks !== "undefined") {
             trElement.innerHTML = `<td>${element.studentName}</td>
                                    <td>${element.studentAge}</td>
                                    <td>${element.studentMarks}</td>
                                    <td>${element.GradeCalculation()}</td>
-                                   <td class="delete-btn">X</td>`
+                                   <td class="delete-btn" data-set="${index}">X</td>`
             tableBody.appendChild(trElement)
         }
     });
 }
-
-
-
 
 
 const addStudentBtn = document.getElementById("addStudentBtn");
@@ -140,14 +138,20 @@ addStudentBtn.onclick = () => {
     if (typeof StudentObj.studentName !== "undefined" && typeof StudentObj.studentAge !== "undefined" && typeof StudentObj.studentMarks !== "undefined") {
         students.push(StudentObj)
     }
-
     printStudents(students);
     storeNameInput.value = ""
     storeAgeInput.value = ""
     storeMarksInput.value = ""
 
-
-    console.log(students)
+    tableBody.addEventListener("click", (event) => {
+       
+        if (event.target.classList.contains("delete-btn")) {
+            const deleteData = event.target.dataset.set;
+            students.splice(deleteData, 1)
+            printStudents(students)
+            return
+        }
+    })
 
 }
 
