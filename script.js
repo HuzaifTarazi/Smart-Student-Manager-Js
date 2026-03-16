@@ -104,7 +104,6 @@ function printStudents(students) {
     students.forEach((element, index) => {
         const trElement = document.createElement("tr")
         trElement.classList.add("tableData")
-        console.log(trElement)
         if (typeof element.studentName !== "undefined" && typeof element.studentAge !== "undefined" && typeof element.studentMarks !== "undefined") {
             trElement.innerHTML = `<td>${element.studentName}</td>
                                    <td>${element.studentAge}</td>
@@ -115,6 +114,31 @@ function printStudents(students) {
         }
     });
 }
+
+const avgMarks = document.getElementById("avgMarks")
+const highestMarks = document.getElementById("highestMarks")
+const lowestMarks = document.getElementById("lowestMarks")
+
+function stats(statsStudent) {
+    const waitingForInput = document.getElementById("waitingForInput")
+    const alertBox  = waitingForInput.parentElement
+    const totalClassCount = statsStudent.map(element => element.studentMarks)
+    if(totalClassCount.length === 0){
+        waitingForInput.textContent = `Waiting for Input.!`
+        return
+    } 
+    alertBox.style.backgroundColor = `green`
+    const totalClassMarks = totalClassCount.reduce((accu, element) => { return accu + element }, 0)
+    const averageClassMarks = (totalClassMarks / (totalClassCount.length * 1100)) * 100
+    const maxNumber = Math.max(...totalClassCount)
+    const minNumber = Math.min(...totalClassCount)
+
+    console.log("MaxNumber" + maxNumber)
+    console.log("minNumbre" + minNumber)
+    console.log("percentage" + averageClassMarks.toFixed(2))
+}
+
+
 
 
 const addStudentBtn = document.getElementById("addStudentBtn");
@@ -143,16 +167,17 @@ addStudentBtn.onclick = () => {
     storeAgeInput.value = ""
     storeMarksInput.value = ""
 
+    stats(students)
+
     tableBody.addEventListener("click", (event) => {
-       
         if (event.target.classList.contains("delete-btn")) {
             const deleteData = event.target.dataset.set;
             students.splice(deleteData, 1)
             printStudents(students)
+            stats(students)
             return
         }
     })
-
 }
 
 

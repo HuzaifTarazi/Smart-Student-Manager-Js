@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Student Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,6 +15,9 @@
         <h1 id="appTitle">Smart Student Manager</h1>
         <!-- Add Student Section -->
         <div class="card">
+            <div class="alert-box" >
+                <p id="waitingForInput">Status: Awaiting Input</p>
+            </div>
             <h2>Add Student</h2>
             <div class="input-group">
                 <input id="nameInput" type="text" placeholder="Student Name">
@@ -50,7 +54,6 @@
             <h2>Class Statistics</h2>
 
             <div id="statsContainer">
-
                 <p id="avgMarks">Average Marks: --</p>
                 <p id="highestMarks">Highest Marks: --</p>
                 <p id="lowestMarks">Lowest Marks: --</p>
@@ -71,11 +74,11 @@
                         <th>Grade</th>
                         <th>Action</th>
                     </tr>
-                    
+
                 </thead>
                 <tbody id="tableBody">
                     <!-- Students will appear here -->
-                     
+
                 </tbody>
 
             </table>

@@ -32,6 +32,7 @@ body {
     border-radius: 10px;
     margin-bottom: 20px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    position: relative;
 }
 
 .card h2 {
@@ -57,7 +58,7 @@ body {
 
 .outlineChange {
     border: 1px solid rgb(215, 0, 0) !important;
-    
+
 }
 
 .input-group input:focus {
@@ -152,4 +153,26 @@ tr:hover {
 
 .listStyle {
     padding: 10px;
+}
+
+.alert-box{
+
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #e00000b5;
+    color: #ffffff;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.alert-box p{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
 }
