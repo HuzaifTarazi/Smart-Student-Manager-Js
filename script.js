@@ -111,8 +111,11 @@ function printStudents(students) {
                                    <td>${element.GradeCalculation()}</td>
                                    <td class="delete-btn" data-index="${index}">X</td>`
             tableBody.appendChild(trElement)
+
+            stats(students)
         }
     });
+
 
 }
 
@@ -129,11 +132,12 @@ function stats(statsStudent) {
     if (totalClassCount.length === 0) {
         alertBox.style.backgroundColor = `#e10000b5`
         waitingForInput.textContent = `Status: Awaiting Input..!`
-        avgMarks.textContent = `OverAll Percentage: `
-        highestMarks.textContent = `Highest Marks: `
-        lowestMarks.textContent = `Lowest Marks: `
+        avgMarks.textContent = `OverAll Percentage: --`
+        highestMarks.textContent = `Highest Marks: --`
+        lowestMarks.textContent = `Lowest Marks: --`
         return
     }
+
     waitingForInput.textContent = `Status: Student Added..`
     alertBox.style.backgroundColor = `rgb(0, 180, 0)`
     const totalClassMarks = totalClassCount.reduce((accu, element) => { return accu + element }, 0)
@@ -141,13 +145,10 @@ function stats(statsStudent) {
     const averageClassMarks = (totalClassMarks / (studentsLength * 1100)) * 100
     const maxNumber = Math.max(...totalClassCount)
     const minNumber = Math.min(...totalClassCount)
+
     avgMarks.textContent = `OverAll Percentage: ${averageClassMarks.toFixed(2)}`
     highestMarks.textContent = `Highest Marks: ${maxNumber}`
     lowestMarks.textContent = `Lowest Marks: ${minNumber}`
-
-    console.log(avgMarks)
-    console.log(maxNumber)
-    console.log(minNumber)
 
 }
 
@@ -177,15 +178,49 @@ addStudentBtn.onclick = () => {
     storeAgeInput.value = ""
     storeMarksInput.value = ""
 
-    stats(students)
+    // stats(students)
 }
+
+const sortMarksBtn = document.getElementById("sortMarksBtn")
+let isAscending = true;
+sortMarksBtn.addEventListener("click", () => {
+    if (isAscending) {
+        const ascending = students.sort((a, b) => { return b.studentMarks - a.studentMarks })
+        printStudents(ascending)
+    } else {
+        const descending = students.sort((a, b) => { return a.studentMarks - b.studentMarks })
+        printStudents(descending)
+    }
+    isAscending = !isAscending
+})
+
+const sortNameBtn = document.getElementById("sortNameBtn")
+sortNameBtn.addEventListener("click", () => {
+    const sortByName = students.sort((a, b) => { return a.studentName.localeCompare(b.studentName) })
+    printStudents(sortByName)
+})
+
+const generateRandomBtn = document.getElementById("generateRandomBtn")
+
+generateRandomBtn.onclick = () => {
+    const namesArr = ["Huzaif", "Arslan", "John Wick", "Zukhruf", "Ruffaf", "Osaf"]
+    const randomNames = namesArr[Math.floor(Math.random() * namesArr.length)]
+    const randomAge = Math.floor(Math.random() * (60 - 18) + 18)
+    const randomMarks = Math.floor(Math.random() * (1100 - 350) + 350)
+    const randomObj = new student({ studentName: `${randomNames}`, studentAge: `${randomAge}`, studentMarks: `${randomMarks}` })
+    students.push(randomObj)
+    printStudents(students)
+    // stats(students)
+}
+
+
 
 tableBody.addEventListener("click", (event) => {
     if (event.target.classList.contains("delete-btn")) {
         const deleteData = Number(event.target.dataset.index);
         students.splice(deleteData, 1)
         printStudents(students)
-        stats(students)
+        // stats(students)
     }
 })
 
