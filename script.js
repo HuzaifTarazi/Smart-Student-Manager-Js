@@ -109,37 +109,47 @@ function printStudents(students) {
                                    <td>${element.studentAge}</td>
                                    <td>${element.studentMarks}</td>
                                    <td>${element.GradeCalculation()}</td>
-                                   <td class="delete-btn" data-set="${index}">X</td>`
+                                   <td class="delete-btn" data-index="${index}">X</td>`
             tableBody.appendChild(trElement)
         }
     });
+
 }
 
 const avgMarks = document.getElementById("avgMarks")
 const highestMarks = document.getElementById("highestMarks")
 const lowestMarks = document.getElementById("lowestMarks")
+const statesContainer = document.getElementById("statsContainer")
 
 function stats(statsStudent) {
     const waitingForInput = document.getElementById("waitingForInput")
-    const alertBox  = waitingForInput.parentElement
+    const alertBox = waitingForInput.parentElement
     const totalClassCount = statsStudent.map(element => element.studentMarks)
-    if(totalClassCount.length === 0){
-        waitingForInput.textContent = `Waiting for Input.!`
+    const studentsLength = totalClassCount.length
+    if (totalClassCount.length === 0) {
+        alertBox.style.backgroundColor = `#e10000b5`
+        waitingForInput.textContent = `Status: Awaiting Input..!`
+        avgMarks.textContent = `OverAll Percentage: `
+        highestMarks.textContent = `Highest Marks: `
+        lowestMarks.textContent = `Lowest Marks: `
         return
-    } 
-    alertBox.style.backgroundColor = `green`
+    }
+    waitingForInput.textContent = `Status: Student Added..`
+    alertBox.style.backgroundColor = `rgb(0, 180, 0)`
     const totalClassMarks = totalClassCount.reduce((accu, element) => { return accu + element }, 0)
-    const averageClassMarks = (totalClassMarks / (totalClassCount.length * 1100)) * 100
+    console.log(totalClassMarks)
+    const averageClassMarks = (totalClassMarks / (studentsLength * 1100)) * 100
     const maxNumber = Math.max(...totalClassCount)
     const minNumber = Math.min(...totalClassCount)
+    avgMarks.textContent = `OverAll Percentage: ${averageClassMarks.toFixed(2)}`
+    highestMarks.textContent = `Highest Marks: ${maxNumber}`
+    lowestMarks.textContent = `Lowest Marks: ${minNumber}`
 
-    console.log("MaxNumber" + maxNumber)
-    console.log("minNumbre" + minNumber)
-    console.log("percentage" + averageClassMarks.toFixed(2))
+    console.log(avgMarks)
+    console.log(maxNumber)
+    console.log(minNumber)
+
 }
-
-
-
 
 const addStudentBtn = document.getElementById("addStudentBtn");
 const students = [];
@@ -168,17 +178,16 @@ addStudentBtn.onclick = () => {
     storeMarksInput.value = ""
 
     stats(students)
-
-    tableBody.addEventListener("click", (event) => {
-        if (event.target.classList.contains("delete-btn")) {
-            const deleteData = event.target.dataset.set;
-            students.splice(deleteData, 1)
-            printStudents(students)
-            stats(students)
-            return
-        }
-    })
 }
+
+tableBody.addEventListener("click", (event) => {
+    if (event.target.classList.contains("delete-btn")) {
+        const deleteData = Number(event.target.dataset.index);
+        students.splice(deleteData, 1)
+        printStudents(students)
+        stats(students)
+    }
+})
 
 
 

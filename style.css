@@ -156,11 +156,10 @@ tr:hover {
 }
 
 .alert-box{
-
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: #e00000b5;
+    background-color: #e10000b5;
     color: #ffffff;
     padding: 10px 16px;
     border-radius: 6px;
