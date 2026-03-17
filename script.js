@@ -173,6 +173,7 @@ addStudentBtn.onclick = () => {
     storeNameInput.value = ""
     storeAgeInput.value = ""
     storeMarksInput.value = ""
+
 }
 
 const sortMarksBtn = document.getElementById("sortMarksBtn")
@@ -213,6 +214,13 @@ generateRandomBtn.onclick = () => {
     printStudents(students)
 }
 
+const exportJsonBtn = document.getElementById("exportJsonBtn")
+exportJsonBtn.onclick = () => {
+    const convertJson = JSON.stringify(students)
+    console.log(convertJson)
+    alert(`Open Console to See the Export File...`)
+}
+
 tableBody.addEventListener("click", (event) => {
     if (event.target.classList.contains("delete-btn")) {
         const deleteData = Number(event.target.dataset.index);
@@ -220,8 +228,6 @@ tableBody.addEventListener("click", (event) => {
         printStudents(students)
     }
 })
-
-
 
 
 
