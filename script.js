@@ -177,8 +177,6 @@ addStudentBtn.onclick = () => {
     storeNameInput.value = ""
     storeAgeInput.value = ""
     storeMarksInput.value = ""
-
-    // stats(students)
 }
 
 const sortMarksBtn = document.getElementById("sortMarksBtn")
@@ -210,7 +208,6 @@ generateRandomBtn.onclick = () => {
     const randomObj = new student({ studentName: `${randomNames}`, studentAge: `${randomAge}`, studentMarks: `${randomMarks}` })
     students.push(randomObj)
     printStudents(students)
-    // stats(students)
 }
 
 
@@ -220,7 +217,6 @@ tableBody.addEventListener("click", (event) => {
         const deleteData = Number(event.target.dataset.index);
         students.splice(deleteData, 1)
         printStudents(students)
-        // stats(students)
     }
 })
 
