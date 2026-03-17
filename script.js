@@ -137,7 +137,7 @@ function stats(statsStudent) {
     waitingForInput.textContent = `Status: Student Added..`
     alertBox.style.backgroundColor = `rgb(0, 180, 0)`
     const totalClassMarks = totalClassCount.reduce((accu, element) => { return accu + element }, 0)
-    console.log(totalClassMarks)
+
     const averageClassMarks = (totalClassMarks / (studentsLength * 1100)) * 100
     const maxNumber = Math.max(...totalClassCount)
     const minNumber = Math.min(...totalClassCount)
@@ -173,7 +173,6 @@ addStudentBtn.onclick = () => {
     storeNameInput.value = ""
     storeAgeInput.value = ""
     storeMarksInput.value = ""
-
 }
 
 const sortMarksBtn = document.getElementById("sortMarksBtn")
@@ -205,7 +204,7 @@ searchInput.addEventListener("keyup", () => {
 const generateRandomBtn = document.getElementById("generateRandomBtn")
 
 generateRandomBtn.onclick = () => {
-    const namesArr = ["Huzaif", "Arslan", "John Wick", "Zukhruf", "Ruffaf", "Osaf"]
+    const namesArr = ["Huzaif", "Arslan", "John Wick", "Zukhruf", "Ruffaf", "Osaf", "SpongeBob", "Patrick", "Pikachu", "Imran Khan", "Kiran Asif", "Tarazi"]
     const randomNames = namesArr[Math.floor(Math.random() * namesArr.length)]
     const randomAge = Math.floor(Math.random() * (60 - 18) + 18)
     const randomMarks = Math.floor(Math.random() * (1100 - 350) + 350)
@@ -226,6 +225,7 @@ tableBody.addEventListener("click", (event) => {
         const deleteData = Number(event.target.dataset.index);
         students.splice(deleteData, 1)
         printStudents(students)
+        stats(students)
     }
 })
 
