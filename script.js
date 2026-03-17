@@ -21,7 +21,7 @@ class student {
     }
 
     get studentName() {
-        return this._studentName
+        return this._studentName.toLowerCase()
     }
 
     get studentAge() {
@@ -111,12 +111,9 @@ function printStudents(students) {
                                    <td>${element.GradeCalculation()}</td>
                                    <td class="delete-btn" data-index="${index}">X</td>`
             tableBody.appendChild(trElement)
-
             stats(students)
         }
     });
-
-
 }
 
 const avgMarks = document.getElementById("avgMarks")
@@ -137,7 +134,6 @@ function stats(statsStudent) {
         lowestMarks.textContent = `Lowest Marks: --`
         return
     }
-
     waitingForInput.textContent = `Status: Student Added..`
     alertBox.style.backgroundColor = `rgb(0, 180, 0)`
     const totalClassMarks = totalClassCount.reduce((accu, element) => { return accu + element }, 0)
@@ -146,7 +142,7 @@ function stats(statsStudent) {
     const maxNumber = Math.max(...totalClassCount)
     const minNumber = Math.min(...totalClassCount)
 
-    avgMarks.textContent = `OverAll Percentage: ${averageClassMarks.toFixed(2)}`
+    avgMarks.textContent = `OverAll Percentage: ${averageClassMarks.toFixed(2)}%`
     highestMarks.textContent = `Highest Marks: ${maxNumber}`
     lowestMarks.textContent = `Lowest Marks: ${minNumber}`
 
@@ -162,7 +158,6 @@ addStudentBtn.onclick = () => {
     const storeMarksInput = document.getElementById("marksInput");
     const marksInput = storeMarksInput.value;
 
-
     if (!nameInput || !ageInput || !marksInput) {
         alert(`Please Enter Student Data to Proceed.!`)
         return;
@@ -173,6 +168,7 @@ addStudentBtn.onclick = () => {
     if (typeof StudentObj.studentName !== "undefined" && typeof StudentObj.studentAge !== "undefined" && typeof StudentObj.studentMarks !== "undefined") {
         students.push(StudentObj)
     }
+
     printStudents(students);
     storeNameInput.value = ""
     storeAgeInput.value = ""
@@ -198,6 +194,13 @@ sortNameBtn.addEventListener("click", () => {
     printStudents(sortByName)
 })
 
+const searchInput = document.getElementById("searchInput")
+searchInput.addEventListener("keyup", () => {
+    const search = searchInput.value.toLowerCase();
+    const filterByName = students.filter((element) => { return element.studentName.toLowerCase().includes(search) })
+    printStudents(filterByName)
+})
+
 const generateRandomBtn = document.getElementById("generateRandomBtn")
 
 generateRandomBtn.onclick = () => {
@@ -210,8 +213,6 @@ generateRandomBtn.onclick = () => {
     printStudents(students)
 }
 
-
-
 tableBody.addEventListener("click", (event) => {
     if (event.target.classList.contains("delete-btn")) {
         const deleteData = Number(event.target.dataset.index);
@@ -219,6 +220,8 @@ tableBody.addEventListener("click", (event) => {
         printStudents(students)
     }
 })
+
+
 
 
 
