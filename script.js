@@ -21,7 +21,7 @@ class student {
     }
 
     get studentName() {
-        return this._studentName.toLowerCase()
+        return this._studentName
     }
 
     get studentAge() {
@@ -228,27 +228,3 @@ tableBody.addEventListener("click", (event) => {
         stats(students)
     }
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
